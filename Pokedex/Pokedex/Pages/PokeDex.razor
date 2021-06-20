@@ -1,0 +1,24 @@
+@using Pokedex.Models
+
+<div class="PokeDex">
+    <h1>PokeDex!</h1>
+    @foreach (var pokemon in Pokemons)
+    {
+        <Pokecard Id="@pokemon.Id" Name="@pokemon.Name" Type="@pokemon.Type" Exp="@pokemon.BaseExperience"/>
+    } 
+</div>
+
+@code {
+
+    public List<Pokemon> Pokemons = new List<Pokemon>
+    {
+        new Pokemon {Id = 4, Name = "Charamander", Type = "fire", BaseExperience = 62},
+        new Pokemon {Id = 7, Name = "Squirtle", Type = "water", BaseExperience = 63},
+        new Pokemon {Id = 11, Name = "Butterfree", Type = "flying", BaseExperience = 72},
+        new Pokemon {Id = 12, Name = "Pikachu", Type = "electric", BaseExperience = 178},
+        new Pokemon {Id = 25, Name = "Jigglypuff", Type = "normal", BaseExperience = 112},
+        new Pokemon {Id = 39, Name = "Gengar", Type = "poison", BaseExperience = 95},
+        new Pokemon {Id = 94, Name = "Eevee", Type = "normal", BaseExperience = 225},
+    };
+
+}
