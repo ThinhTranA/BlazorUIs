@@ -7,7 +7,8 @@
 </div>
 
 @code {
-       public const string POKE_API = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
+        
+        public const string POKE_API = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/";
    
    [Parameter]
    public int Id { get; set; }
@@ -18,5 +19,10 @@
    [Parameter]
    public int Exp { get; set; }
 
-   public string ImgSrc => $"{POKE_API}{Id}.png";
+   public string ImgSrc => $"{POKE_API}{PadToThree(Id)}.png";
+    
+    
+    Func<int,string> PadToThree = (number) => number <= 999 ? $"00{number}"[^3..] : number.ToString();
+
+
 }
