@@ -1,0 +1,22 @@
+<div class="Pokecard">
+   <h1>@Name</h1>
+   <img src="@ImgSrc" alt="@Name"/>
+   <div>Type= @Type</div>
+   <div>Exp= @Exp</div>
+   
+</div>
+
+@code {
+       public const string POKE_API = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
+   
+   [Parameter]
+   public int Id { get; set; }
+   [Parameter]
+   public string Name { get; set; }
+   [Parameter]
+   public string Type { get; set; }
+   [Parameter]
+   public int Exp { get; set; }
+
+   public string ImgSrc => $"{POKE_API}{Id}.png";
+}
