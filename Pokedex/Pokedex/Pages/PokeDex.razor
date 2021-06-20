@@ -2,10 +2,13 @@
 
 <div class="PokeDex">
     <h1>PokeDex!</h1>
-    @foreach (var pokemon in Pokemons)
-    {
-        <Pokecard Id="@pokemon.Id" Name="@pokemon.Name" Type="@pokemon.Type" Exp="@pokemon.BaseExperience"/>
-    } 
+    <div class="PokeDex-cards">
+      @foreach (var pokemon in Pokemons)
+       {
+           <Pokecard Id="@pokemon.Id" Name="@pokemon.Name" Type="@pokemon.Type" Exp="@pokemon.BaseExperience"/>
+       }  
+    </div>
+ 
 </div>
 
 @code {
