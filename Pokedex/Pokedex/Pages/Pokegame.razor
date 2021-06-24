@@ -1,0 +1,46 @@
+@using Pokedex.Models
+@using Pokedex.Extensions
+
+<div>
+    <PokeDex Pokemons="@Pokemons" Exp="@Exp1" IsWinner="@Is1Win"/>
+    <PokeDex Pokemons="@Pokemons" Exp="@Exp2" IsWinner="@Is2Win"/>
+</div>
+
+@code {
+   
+    public List<Pokemon> Pokemons = new()
+    {
+        new() {Id = 4, Name = "Charamander", Type = "fire", BaseExperience = 62},
+        new() {Id = 7, Name = "Squirtle", Type = "water", BaseExperience = 63},
+        new() {Id = 11, Name = "Butterfree", Type = "flying", BaseExperience = 72},
+        new Pokemon {Id = 12, Name = "Pikachu", Type = "electric", BaseExperience = 178},
+        new Pokemon {Id = 25, Name = "Jigglypuff", Type = "normal", BaseExperience = 112},
+        new Pokemon {Id = 39, Name = "Gengar", Type = "poison", BaseExperience = 95},
+        new Pokemon {Id = 94, Name = "Eevee", Type = "normal", BaseExperience = 225},
+    };
+
+    public int Exp1 { get; set; }
+    public int Exp2 { get; set; }
+
+    public bool Is1Win => Exp1 > Exp2;
+    public bool Is2Win => Exp2 > Exp1;
+    public List<Pokemon> Hand1 { get; set; }
+    public List<Pokemon> Hand2 { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Hand1 = new List<Pokemon>();
+        Hand2 = Pokemons;
+        while (Hand1.Count < Hand2.Count)
+        {
+            var randIdx = (int) Math.Floor(new Random().NextDouble() * Hand2.Count);
+            var randPokemon = Hand2.Splice(randIdx, 1)[0];
+            Hand1.Add(randPokemon);
+        }
+
+        Exp1 = Hand1.Sum(pokemon => pokemon.BaseExperience);
+        Exp2 = Hand2.Sum(pokemon => pokemon.BaseExperience);
+    }
+
+}
